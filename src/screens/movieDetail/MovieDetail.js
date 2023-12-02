@@ -11,16 +11,11 @@ import {
 import {Constants} from '../../constants/Constants';
 import AxiosService from '../../services/axiosServices';
 import {ApiUrls} from '../../services/URLS';
-import Video from 'react-native-video';
-import MediaControls, {PLAYER_STATES} from 'react-native-media-controls';
 
 const MovieDetail = ({navigation, route}) => {
   const {movieId} = route.params;
-  const {movieList} = route.params;
   const [movieDetail, setMovieDetail] = useState([]);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const [videoKey, setVideoKey] = useState('');
-  console.log("🚀 ~ file: MovieDetail.js:23 ~ MovieDetail ~ videoKey:", videoKey)
+
 
   useEffect(() => {
     AxiosService.getMovieDetail({
@@ -34,52 +29,12 @@ const MovieDetail = ({navigation, route}) => {
       });
   }, [movieId]);
 
-  useEffect(() => {
-    AxiosService.getMovieDetail({
-      url: `${ApiUrls.VIDEO(movieId)}`,
-    })
-      .then(response => {
-        const videoResults = response.data.results;
 
-        if (videoResults.length > 0) {
-          setVideoKey(videoResults[0].key);
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching movie details:', error);
-      });
-  }, []);
-
-  const VideoPlayer = () => {
-    return (
-
-    <View style={{backgroundColor: 'transparent'}}>
-      
-       <Video
-         source={{uri: `https://www.youtube.com/watch?v=${videoKey}`}}
-        paused={false}
-        style={{
-          width: '100%',
-          width: 500,
-          height: '100%',
-          height: 500,
-          // position: 'absolute'
-        }}
-        repeat={true}
-        resizeMode={'cover'}
-        onError={(error)=>console.log('error', error)}
-        controls={true}
-      />
-      <Text onPress={() => setIsVideoPlaying(false)} style={{color: 'red', alignSelf: 'center'}}>Done</Text>
-    </View>
-    )
-  };
+ 
 
   return (
     <>
-      {(isVideoPlaying && videoKey) ? (
-        <VideoPlayer />
-      ) : (
+       
         <ScrollView style={styles.mainView}>
           <Image
             style={styles.imageView}
@@ -134,7 +89,7 @@ const MovieDetail = ({navigation, route}) => {
             <Text>{movieDetail.overview}</Text>
           </View>
         </ScrollView>
-      )}
+      
     </>
   );
 };
