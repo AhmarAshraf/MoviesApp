@@ -39,10 +39,6 @@ const MovieDetail = ({navigation, route}) => {
       url: `${ApiUrls.VIDEO(movieId)}`,
     })
       .then(response => {
-        // console.log(
-        //   '🚀 ~ file: MovieDetail.js:41 ~ useEffect ~ response:',
-        //   response.data,
-        // );
         const videoResults = response.data.results;
 
         if (videoResults.length > 0) {
@@ -58,17 +54,6 @@ const MovieDetail = ({navigation, route}) => {
     return (
 
     <View style={{backgroundColor: 'transparent'}}>
-      {/* <Video
-        source={{uri: `https://www.youtube.com/watch?v=${videoKey}`}} 
-        // ref={ref => {
-        //   this.player = ref;
-        // }} // Store reference
-        onBuffer={this.onBuffer} // Callback when remote video is buffering
-        onError={this.videoError} // Callback when video cannot be loaded
-        style={{  width: '100%',
-        height: '100%',
-        position: 'absolute',}}
-      /> */}
       
        <Video
          source={{uri: `https://www.youtube.com/watch?v=${videoKey}`}}
@@ -85,19 +70,6 @@ const MovieDetail = ({navigation, route}) => {
         onError={(error)=>console.log('error', error)}
         controls={true}
       />
-      {/* <MediaControls
-        isFullScreen={true}
-        // duration={duration}
-        // isLoading={isLoading}
-        mainColor="orange"
-        // onFullScreen={noop}
-        // onPaused={onPaused}
-        // onReplay={onReplay}
-        // onSeek={onSeek}
-        // onSeeking={onSeeking}
-        // playerState={playerState}
-        // progress={currentTime}
-      /> */}
       <Text onPress={() => setIsVideoPlaying(false)} style={{color: 'red', alignSelf: 'center'}}>Done</Text>
     </View>
     )

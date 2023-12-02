@@ -1,36 +1,20 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Text} from 'react-native';
 import {
   FlatList,
-  Image,
   View,
   TouchableOpacity,
-  ImageBackground,
   StyleSheet,
 } from 'react-native';
-import {Constants} from '../../constants/Constants';
 
 const GenresList = props => {
-  const {genres, onPress, loadMoreData} = props;
-  console.log("🚀 ~ file: GenresList.js:15 ~ GenresList ~ genres:", genres)
-  const [isLoading, setIsLoading] = useState(true);
+  const {genres, onPress, } = props;
+
   const genreItem = ({item}) => {
     return (
       <TouchableOpacity
         style={styles.genreItemContainer}
         onPress={() => onPress(item)}>
-        {/* <ImageBackground
-          imageStyle={{borderRadius: 18}}
-          source={{uri: `${Constants.IMAGE_URL}${item.poster_path}`}}>
-          <Image
-            style={styles.imageView}
-            source={{
-              uri: `${Constants.IMAGE_URL}${item.poster_path}`,
-            }}
-            onLoadEnd={() => {
-              setIsLoading(false);
-            }}
-          /> */}
           <Text
             style={{
               position: 'absolute',
@@ -42,7 +26,6 @@ const GenresList = props => {
             }}>
             {item.name}
           </Text>
-        {/* </ImageBackground> */}
       </TouchableOpacity>
     );
   };
@@ -56,7 +39,6 @@ const GenresList = props => {
         renderItem={genreItem}
         keyExtractor={(item, index) => index.toString()}
         onEndReachedThreshold={0.2}
-        // onEndReached={() => loadMoreData()}
       />
     </View>
   );
@@ -78,7 +60,6 @@ const styles = StyleSheet.create({
   imageView: {
     height: 180,
     borderRadius: 18,
-    // resizeMode: 'contain',
   },
   divider: {
     backgroundColor: 'grey',

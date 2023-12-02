@@ -12,12 +12,11 @@ const Dashboard = ({navigation}) => {
     // Api call
     useEffect(() => {
       AxiosService.getMovies({
-        url: ApiUrls.MOVIE_LIST,
+        url: ApiUrls.UP_COMING_MOVIE_LIST,
         page: pageNumber
       }).then(response => {
         setMovieList(preMovies=>[...preMovies, ...response.data.results])
       }).catch(error => {
-        console.log("🚀 ~ file: Dashboard.js:19 ~ useEffect ~ error:", error)
       })
     }, [pageNumber])
 

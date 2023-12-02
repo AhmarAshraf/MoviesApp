@@ -10,7 +10,7 @@ const SIMILAR_MOVIE = (movieId) => `movie/${movieId}/recommendations?api_key=${C
 const ARTIST = (movieId) => `movie/${movieId}/credits?api_key=${Constants.API_KEY}&language=en-US`
 const ARTIST_DETAIL = (personId) => `person/${personId}?api_key=${Constants.API_KEY}&language=en-US`
 const GENRE_LIST = `genre/movie/list?api_key=${Constants.API_KEY}`
-const VIDEO = (movieId) => `movie/${movieId}/videos?api_key=${Constants.API_KEY}`
+
 export const ApiUrls = {
     BASE_URL,
     MOVIE_LIST,
@@ -22,5 +22,4 @@ export const ApiUrls = {
     ARTIST,
     ARTIST_DETAIL,
     GENRE_LIST,
-    VIDEO
 };

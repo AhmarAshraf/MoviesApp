@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Text} from 'react-native'
 import {
   FlatList,
@@ -12,7 +12,6 @@ import {Constants} from '../../constants/Constants';
 
 const MovieList = props => {
   const {movies, onPress, loadMoreData} = props;
-  const [isLoading, setIsLoading] = useState(true);
   const movieItem = ({item}) => {
     console.log("🚀 ~ file: MoviesList.js:17 ~ movieItem ~ item:", item)
     return (
@@ -66,7 +65,6 @@ const styles = StyleSheet.create({
   imageView: {
     height: 180,
     borderRadius: 18,
-    // resizeMode: 'contain',
   },
   divider: {
     backgroundColor: 'grey',
